@@ -8,6 +8,7 @@ selenium = "*"
 
 [packages]
 django = "*"
+django-allauth = "*"
 
 [requires]
 python_version = "3.7"
