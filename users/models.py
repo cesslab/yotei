@@ -3,5 +3,5 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    pass
+    full_name = models.CharField('full name', max_length=255)
 
