@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='customuser',
             name='role',
-            field=models.PositiveSmallIntegerField(choices=[(1, 'MANAGER'), (2, 'EXPERIMENTER'), (3, 'SUBJECT')], default=1, verbose_name='role'),
+            field=models.PositiveSmallIntegerField(choices=[(1, 'MANAGER'), (2, 'RESEARCHER'), (3, 'SUBJECT')], default=1, verbose_name='role'),
             preserve_default=False,
         ),
     ]
