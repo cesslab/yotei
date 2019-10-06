@@ -15,10 +15,19 @@ class CustomUser(AbstractUser):
 class Researcher(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.full_name
+
 
 class Manager(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.user.full_name
+
 
 class Subject(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.user.full_name
