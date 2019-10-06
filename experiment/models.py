@@ -7,6 +7,9 @@ class Experiment(models.Model):
     name = models.CharField(max_length=255)
     researchers = models.ManyToManyField(Researcher)
 
+    def __str__(self):
+        return self.name
+
 
 class Session(models.Model):
     experiment = models.ForeignKey(Experiment, on_delete=models.CASCADE)
