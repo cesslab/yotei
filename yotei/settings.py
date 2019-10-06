@@ -47,6 +47,10 @@ INSTALLED_APPS = [
 
     'pages',
     'users',
+    'experiment',
+
+    # development
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
