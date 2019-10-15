@@ -20,7 +20,7 @@ class Session(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return "{}_{}_{}".format(self.datetime.date(), self.datetime.time(), self.pk)
+        return "{}-{}".format(self.datetime.strftime("%b%d%Y-%l%:M%p"), self.pk)
 
 
 class PrimaryList(models.Model):
