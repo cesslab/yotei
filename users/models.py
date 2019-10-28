@@ -3,13 +3,10 @@ from django.contrib.auth.models import AbstractUser
 
 
 class CustomUser(AbstractUser):
-    MANAGER = 1
-    RESEARCHER = 2
-    SUBJECT = 3
-    ROLE = ((MANAGER, 'MANAGER'), (RESEARCHER, 'RESEARCHER'), (SUBJECT, 'SUBJECT'))
-
     full_name = models.CharField('full name', max_length=255)
-    role = models.PositiveSmallIntegerField('role', choices=ROLE)
+
+    def __str__(self):
+        return self.full_name
 
 
 class Manager(models.Model):

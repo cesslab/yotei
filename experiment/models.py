@@ -11,13 +11,6 @@ class Experiment(models.Model):
         return self.name
 
 
-class Subject(models.Model):
-    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.user.full_name
-
-
 class Session(models.Model):
     experiment = models.ForeignKey(Experiment, on_delete=models.CASCADE)
     datetime = models.DateTimeField()
@@ -31,13 +24,27 @@ class Session(models.Model):
             self.experiment.pk, self.datetime.strftime("%m/%d/%Y"), self.datetime.strftime("%l:%M%p"), self.pk)
 
 
-class Enrollment(models.Model):
-    PRIMARY = 1
-    WAIT = 2
-    ENROLLMENT_TYPE = ((PRIMARY, 'PRIMARY'), (WAIT, 'WAIT'))
-    type = models.PositiveIntegerField('type', choices=ENROLLMENT_TYPE)
-    session = models.ForeignKey(Session, on_delete=models.CASCADE)
-    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
+class MainList(models.Model):
+    session = models.OneToOneField(Session, related_name='main_list', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Session {} - Main List".format(self.session)
+
+
+class WaitList(models.Model):
+    session = models.OneToOneField(Session, related_name='wait_list', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Session {} - Wait List".format(self.session)
+
+
+class Subject(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    wait_lists = models.ManyToManyField(WaitList)
+    main_lists = models.ManyToManyField(MainList)
+
+    def __str__(self):
+        return self.user.full_name
 
 
 class Researcher(models.Model):
